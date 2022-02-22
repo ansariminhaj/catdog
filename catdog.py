@@ -91,23 +91,6 @@ class Net(nn.Module):
         x = self.fc17(x)
         return x
 
-train_transforms =  transforms.Compose([
-      transforms.ToPILImage(), #Transforms only works on PIL images (not numpy arrays)
-      transforms.Resize((224, 224)),
-      transforms.ToTensor(),
-    ])
-
-test_transforms = transforms.Compose([   
-      transforms.ToPILImage(),
-      transforms.Resize((224, 224)),
-      transforms.ToTensor()
-    ])
-
-val_transforms = transforms.Compose([   
-      transforms.ToPILImage(),
-      transforms.Resize((224, 224)),
-      transforms.ToTensor()
-    ])
 
 def labeled_dataset_df(train_dir):
     filenames=[]
@@ -136,6 +119,18 @@ def create_dataloaders(config):
     df = labeled_dataset_df(config['train_dir'])
     
     train_list, val_list = train_test_split(df, test_size=config['val_size'])
+
+    train_transforms =  transforms.Compose([
+          transforms.ToPILImage(), #Transforms only works on PIL images (not numpy arrays)
+          transforms.Resize((224, 224)),
+          transforms.ToTensor(),
+        ])
+
+    val_transforms = transforms.Compose([   
+          transforms.ToPILImage(),
+          transforms.Resize((224, 224)),
+          transforms.ToTensor()
+        ])
     
     train_dataset=ImageDataset(train_list, config['train_dir'], train_transforms)
     val_dataset=ImageDataset(val_list, config['train_dir'], val_transforms)
