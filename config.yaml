@@ -1,0 +1,13 @@
+#INITIAL SETTINGS
+train_dir: train
+test_dir: test1
+val_size: 0.2
+model_directory: models/
+model_name: catdog_classifier.pkl
+
+
+#CNN parameters
+batch_size: 32
+learning_rate: 0.0001
+weight_decay: 0.0001
+epoch: 5
