@@ -1,3 +1,5 @@
+# Cat Dog Training Network (CDTN)
+
 Please use the code:
 
 python catdog.py config.yaml
